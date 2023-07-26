@@ -6,30 +6,37 @@ services:
     restart: always
     env_file: .env
     ports:
-          - 443:443
+      - 443:443
+    networks:
+      - inception
 
-  ## wordpress:
-    ## container_name: wordpress
-    ## build: ./requirements/wordpress
-    ## restart: always
-    ## env_file: .env
-    ## volumes:
-      ## - /home/vsergio/data/wordpress:/var/www/html
+  wordpress:
+    depends_on:
+      - mariadb
+    container_name: wordpress
+    build: ./requirements/wordpress
+    restart: always
+    env_file: .env
+    # volumes:
+    #   - wordpress:/var/www/html
+    networks:
+      - inception
 
-  ## mariadb:
-    ## container_name: mariadb
-    ## build: ./requirements/mariadb
-    ## restart: always
-    ## env_file: .env
-    ## volumes:
-      ## - /home/vsergio/data/db:/var/lib/mysql
+  mariadb:
+    container_name: mariadb
+    build: ./requirements/mariadb
+    restart: always
+    env_file: .env
+    ports:
+      - 3306:3306
+    networks:
+      - inception
+    # volumes:
+    #   - /home/vsergio/data/db:/var/lib/mysql
 
 networks:
   inception:
-    driver: bridge
-
-## see if it's necessary to use the structure below or we can use
-## volume directly from the services
+    name: inception
 
 # volumes:
 
@@ -37,12 +44,14 @@ networks:
 #     name: wordpress
 #     driver: local
 #     driver_opts:
-#             device: /home/vsergio/data/wordpress
+#             type: none
+#             device: /Users/vitor/data/wordpress
 #             o: bind
 
 #   mariadb:
 #     name: mariadb
 #     driver: local
 #     driver_opts:
-#             device: /home/vsergio/data/mariadb
+#             type: none
+#             device: /Users/vitor/data/mariadb
 #             o: bind
