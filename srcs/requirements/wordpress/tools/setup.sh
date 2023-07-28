@@ -13,4 +13,4 @@ wp config create --allow-root --dbname=${DB_NAME} --dbuser=${DB_USER} --dbpass=$
 wp core install --allow-root --url=${DOMAIN_NAME} --title=${WP_TITLE} --admin_user=${WP_ADMIN_USER} --admin_password=${WP_ADMIN_PASSWORD} --admin_email=${WP_ADMIN_EMAIL} --skip-email
 wp user create ${WP_USER} ${WP_EMAIL} --user_pass=${WP_PASSWORD} --role=author
 
-exec php-fpm7 -F -R
+exec php-fpm7 -F
