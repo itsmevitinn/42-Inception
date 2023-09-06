@@ -47,8 +47,7 @@ volumes:
     driver: local
     driver_opts:
             type: none
-            # device: /home/vsergio/data/wordpress
-            device: /Users/vitor/data/wordpress
+            device: /home/vsergio/data/wordpress
             o: bind
 
   mariadb:
@@ -56,8 +55,7 @@ volumes:
     driver: local
     driver_opts:
             type: none
-            # device: /home/vsergio/data/mariadb
-            device: /Users/vitor/data/mariadb
+            device: /home/vsergio/data/mariadb
             o: bind
 
 
